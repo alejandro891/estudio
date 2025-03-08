@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class NumerosPerfectos {
+    
+    // Método para verificar si un número es perfecto
+    public static boolean esNumeroPerfecto(int numero) {
+        int sumaDivisores = 0;
+        
+        // Encontrar los divisores propios y sumarlos
+        for (int i = 1; i <= numero / 2; i++) {
+            if (numero % i == 0) {
+                sumaDivisores += i;
+            }
+        }
+        
+        // Comparar la suma con el número original
+        return sumaDivisores == numero;
+    }
+    
+    // Método para encontrar todos los números perfectos en un rango
+    public static void encontrarNumerosPerfectos(int inicio, int fin) {
+        System.out.println("Números perfectos en el rango " + inicio + " a " + fin + ":");
+        boolean encontrado = false;
+        for (int i = inicio; i <= fin; i++) {
+            if (esNumeroPerfecto(i)) {
+                System.out.println(i);
+                encontrado = true;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontraron números perfectos en este rango.");
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Verificar si un número ingresado es perfecto
+        System.out.print("Ingrese un número para verificar si es perfecto: ");
+        int numero = scanner.nextInt();
+        if (esNumeroPerfecto(numero)) {
+            System.out.println(numero + " es un número perfecto.");
+        } else {
+            System.out.println(numero + " no es un número perfecto.");
+        }
+        
+        // Encontrar números perfectos en un rango
+        System.out.print("Ingrese el inicio del rango: ");
+        int inicio = scanner.nextInt();
+        System.out.print("Ingrese el fin del rango: ");
+        int fin = scanner.nextInt();
+        
+        encontrarNumerosPerfectos(inicio, fin);
+        
+        scanner.close();
+    }
+}
